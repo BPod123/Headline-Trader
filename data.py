@@ -3,12 +3,28 @@ import pandas as pd
 import datetime
 import yfinance
 import numpy as np
+from torch.utils.data import Dataset
+import datasets
+import os
+import pickle
+
 START_DATE = datetime.date(2022, 3, 7)
 def date_to_int(string):
     string = string.split(' ')[0]
     date = datetime.datetime.strptime(string, '%Y-%m-%d').date()
     delta = date - START_DATE
     return str(delta.days)
+def load_data_from_pickle(database_path: str, shift=5, percentage_split=(0.8, 0.1, 0.1), gap=False, pull_from_first_section=False):
+    # check if pickle exists if it doesn't then create it
+    if not os.path.exists("data.pickle"):
+        ds = load_data(database_path, shift=5, percentage_split=(0.8, 0.1, 0.1), gap=False, pull_from_first_section=False)
+        with open("data.pickle", "wb") as f:
+            pickle.dump(ds, f)
+        return ds
+    else:
+        with open("data.pickle", "rb") as f:
+            ds = pickle.load(f)
+    return ds
 
 def load_data(database_path: str, shift=5, percentage_split=(0.8, 0.1, 0.1), gap=False, pull_from_first_section=False):
     """
@@ -70,7 +86,6 @@ def load_data(database_path: str, shift=5, percentage_split=(0.8, 0.1, 0.1), gap
         return_data.append(all_data[start:])
         return return_data
     return all_data
-
 
 
 
