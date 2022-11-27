@@ -5,11 +5,6 @@ from nltk.lm import Vocabulary
 import html
 import re
 from collections import Counter
-import numpy as np
-import torch
-from torch import nn
-from torch.utils.data import DataLoader, RandomSampler
-import tqdm
 numbers = re.compile("[+-]?([0-9]+([.][0-9]*)?|[.][0-9]+)")
 contains_letters = re.compile('[a-zA-Z]')
 def num_to_text(num_str):
@@ -73,8 +68,11 @@ def prepare_data():
     test_data = list(zip(format_titles(test_titles), test_labels))
     return {
         'train': train_data,
+        'train_dates': [x[1]['Date'] for x in train],
         'validation': validation_data,
+        'validation_dates': [x[1]['Date'] for x in validation],
         'test': test_data,
+        'test_dates': [x[1]['Date'] for x in test],
         'PAD_ID': PAD_ID,
         'UNK_ID': UNK_ID,
         'vocab': vocab

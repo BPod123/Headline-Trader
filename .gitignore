@@ -1,6 +1,7 @@
 .idea
 .vscode
 *.db
+Saved_Models/*
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

@@ -29,4 +29,4 @@ def create_chart(dir: str, names, models):
 
 
 if __name__ == '__main__':
-    create_chart("./Results/test/", ["Bert", "Bert Improved"],["Bert", "Bert Improved"])
+    create_chart("../Results/test/", ["Bert", "Bert Improved", "BOW"],["Bert", "Bert Improved", "BOW"])
