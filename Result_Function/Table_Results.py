@@ -36,5 +36,5 @@ def create_table(train: str, val: str, test: str, names, models):
     return table
 
 if __name__ == '__main__':
-    table = create_table("../Results/train/", "../Results/validation/", "../Results/test/", ["Bert", "Bert Improved", "BOW"], ["Bert", "Bert Improved", "BOW"])
+    table = create_table("../Results/train/", "../Results/validation/", "../Results/test/", ["Bert", "Bert Improved", "BOW", "Random_Baseline"], ["Bert", "Bert Improved", "BOW", "Random_Baseline"])
     print(table)
