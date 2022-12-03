@@ -167,11 +167,8 @@ def load_data_memory_efficient(database_path: str, shift=5, percentage_split=(0.
 
 
 
-
-
-
 if __name__ == '__main__':
-    with_gaps_pull_from_first_multiple_stocks_mem_efficient = load_data_memory_efficient("Data/Headlines.db", 5, (0.6, 0.1, 0.3), True, True, ['SPY', 'DOW'])
+    with_gaps_pull_from_first_multiple_stocks_mem_efficient = load_data_memory_efficient("Data/Headlines.db", 5, (0.8, 0.1, 0.1), False, True, ["SPY", "^DJI", "NDAQ", "AAPL", "GOOG", "META"])
     with_gaps_pull_from_first_multiple_stocks = load_data("Data/Headlines.db", 5, (0.6, 0.1, 0.3), True, True, ['SPY', 'DOW'])
     with_gaps_pull_from_first = load_data("Data/Headlines.db", 5, (0.6, 0.1, 0.3), True, True)
     with_gaps_pull_from_preceeding = load_data("Data/Headlines.db", 5, (0.6, 0.1, 0.3), True, False)

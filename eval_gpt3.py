@@ -2,13 +2,15 @@ import openai
 from dotenv import load_dotenv
 import os
 from data import load_data_from_pickle
-
+import pandas as pd
 load_dotenv()
 openai.api_key = os.getenv("OPENAI_KEY")
-
-def get_prediction(headlines):
+def get_examples_from_training(index_name, random=True):
+    pass
+def get_prediction_zeroshot(headlines, index_name="S&P 500"):
+    examples = get_examples_from_training()
     prompt = \
-        f"Given the following headline data, say whether the S&P 500 went up or down after one week of their release.\n" \
+        f"Given the following headline data, say whether the {index_name} went up or down after one week of their release.\n" \
         f"Headlines: Ukrainian president Zelensky is pleading for more stern weaponry. CNN\'s Ben Wedeman goes to a drill where Ukrainian troops are trying out the fresh US-supplied rifles. How To Reduce Your Mortgage Payment Recalculate Your House Payment Now After months of military buildup and brinkmanship, Russia launched an unprecedented assault on Ukraine in late February. Can You Refinance With $0 Out Of Pocket? Germany records first competitive victory against Italy, Hungary thrashes England in UEFA Nations League Woman says she was forced to give up daughter to alleged rapist -- and pay child support Pakistanis told to drink less tea as nation grapples with economic crisis Los Angeles DA George Gascon recall group says it has collected required signatures to put matter on ballot NATO Fast Facts\n" \
         f"Market: down\n" \
         f"Headlines: {headlines}\n" \
@@ -31,7 +33,7 @@ def get_prediction(headlines):
     elif prediction == "up":
         prediction = 1
     else:
-        prediction = -1
+        prediction = 0
     return prediction
 
 def eval(ds):
@@ -43,7 +45,7 @@ def eval(ds):
         headlines_all = " ".join(news.title)
         for i in range(min(len(headlines_all) // 500, 5)):
             headlines = headlines_all[i*500 : (i+1)*500]
-            pred.append(get_prediction(headlines))
+            pred.append(get_prediction_zeroshot(headlines))
             gt.append(outcome)
             if pred[-1] == gt[-1]:
                 correct += 1

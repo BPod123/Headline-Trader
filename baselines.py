@@ -13,26 +13,16 @@ def get_majority_class(ds):
 
 
 def majority_class_baselines():
-    train_ds = pd.read_csv("Results/train/BOW.csv")
+    train_ds = pd.read_csv("Results/train/GPT3.csv")
     paths = [os.path.join('Results', x) for x in ['test', 'train', 'validation']]
     for path in paths:
-        read_path = os.path.join(path, 'BOW.csv')
+        read_path = os.path.join(path, 'GPT3.csv')
         save_path = os.path.join(path, 'Majority_baseline.csv')
         df = pd.read_csv(read_path)
         pred = get_majority_class(train_ds)
         df['Predictions'] = np.ones(len(df)) * pred
         df.to_csv(save_path, index=False)
 
-    # print("majority class for ds's")
-    # print("train", get_majority_class(train_ds))
-    # print(get_majority_class(val_ds))
-    # print("test", get_majority_class(test_ds))
-    # print("evaluate on majority class for ds's")
-    # print(majority_class_eval(train_ds, 1))
-    # print(majority_class_eval(val_ds, get_majority_class(train_ds)))
-    # print(majority_class_eval(test_ds, get_majority_class(val_ds)))
-    # print("test acc:", majority_class_eval(test_ds, get_majority_class(train_ds)))
-    
 
 def random_baselines():
     paths = [os.path.join('Results', x) for x in ['test', 'train', 'validation']]
