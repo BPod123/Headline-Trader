@@ -26,7 +26,7 @@ def create_table(train: str, val: str, test: str, models):
     results = np.zeros((3 * 3, len(models)))
 
     indexes = []
-    metrics = ["F1", "Recall", "Precision"]
+    metrics = ["F1", "Precision", "Recall"]
     datasets = ["Train", "Validation", "Test"]
 
     for dataset in datasets:
