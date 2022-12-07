@@ -20,9 +20,9 @@ def evaluate(file_name, sub_dir):
     rec = [rec_0, rec_1]
     avg = lambda x: sum(x) / len(x)
     return pd.DataFrame({"Avg F1": avg(f1), "Avg Prec": [avg(prec)], "Avg Rec": [avg(rec)],
-                         "Cls 0 F1": [f1[0]], "Class 0 Prec": [prec[0]], "Class 0 Rec": [rec[0]],
-                         "Cls 1 F1": [f1[1]], "Class 1 Prec": [prec[1]], "Class 1 Rec": [rec[1]]},
-                        index=[file_name[:-3]])
+                         "Class 0 F1": [f1[0]], "Class 0 Prec": [prec[0]], "Class 0 Rec": [rec[0]],
+                         "Class 1 F1": [f1[1]], "Class 1 Prec": [prec[1]], "Class 1 Rec": [rec[1]]},
+                        index=[file_name[:-4]])
 
 
 if __name__ == '__main__':
